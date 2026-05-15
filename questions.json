@@ -1,0 +1,49 @@
+[
+  {
+    "id": 1,
+    "question": "What does len([1,2,3]) return?",
+    "options": ["2", "3", "4"],
+    "answer": "3",
+    "difficulty": "Beginner"
+  },
+  {
+    "id": 2,
+    "question": "Which keyword defines a function?",
+    "options": ["func", "def", "function"],
+    "answer": "def",
+    "difficulty": "Beginner"
+  },
+  {
+    "id": 3,
+    "question": "What is list comprehension used for?",
+    "options": [
+      "Create lists efficiently",
+      "Delete lists",
+      "Convert strings"
+    ],
+    "answer": "Create lists efficiently",
+    "difficulty": "Intermediate"
+  },
+  {
+    "id": 4,
+    "question": "What does map() return?",
+    "options": [
+      "Iterator",
+      "List",
+      "Dictionary"
+    ],
+    "answer": "Iterator",
+    "difficulty": "Advanced"
+  },
+  {
+    "id": 5,
+    "question": "What is time complexity of dictionary lookup?",
+    "options": [
+      "O(1)",
+      "O(n)",
+      "O(log n)"
+    ],
+    "answer": "O(1)",
+    "difficulty": "Elite"
+  }
+]
