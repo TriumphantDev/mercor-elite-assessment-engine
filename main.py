@@ -121,21 +121,24 @@ def show_score_history(name: str) -> None:
         )
 
     average_score = round(total_score / len(history), 2)
-    if len(history) > 1:
-        trend = history[-1]["score"] - history[0]["score"]
-
-    if trend > 0:
-        print(f"Trend: Improving (+{trend}%)")
-    elif trend < 0:
-        print(f"Trend: Declining ({trend}%)")
-    else:
-        print("Trend: Stable")
 
     print("\nPERFORMANCE ANALYTICS")
     print("-" * 60)
     print(f"Total Attempts: {len(history)}")
     print(f"Best Score: {best_score}%")
     print(f"Average Score: {average_score}%")
+
+    if len(history) > 1:
+        trend = history[-1]["score"] - history[0]["score"]
+
+        if trend > 0:
+            print(f"Trend: Improving (+{trend}%)")
+        elif trend < 0:
+            print(f"Trend: Declining ({trend}%)")
+        else:
+            print("Trend: Stable")
+    else:
+        print("Trend: Not enough data yet")
 
 
 def ask_replay() -> bool:
