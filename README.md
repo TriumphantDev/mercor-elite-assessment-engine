@@ -1,169 +1,115 @@
-# Mercor Elite Assessment Engine
+# Mercor Elite Assessment Engine V2
 
-A high-performance Python-based technical assessment simulator engineered to replicate structured adaptive coding evaluations.
+A modular Python assessment platform with **adaptive difficulty**, category analytics, persistent attempt history, and automated quality checks.
 
-Built to demonstrate assessment-system design, modular architecture, performance analytics, and recruiter-grade software engineering principles.
+## What changed in V2
 
----
+The original CLI selected one difficulty and filtered questions to that level. V2 introduces a real adaptive engine: consecutive correct answers promote the candidate, while consecutive incorrect answers lower difficulty. Every attempt records the difficulty journey and category-level performance.
 
-## Overview
-
-The Mercor Elite Assessment Engine simulates real-world technical screening workflows by combining:
+### Features
 
 - Adaptive difficulty progression
-- Performance-based scoring
-- Candidate analytics
-- Persistent leaderboard tracking
-- Replayable assessment cycles
-- Structured evaluation classification
+- Configurable question counts and adaptation thresholds
+- Validated JSON question bank
+- Question categories and explanations
+- Per-category accuracy and focus-area detection
+- Persistent attempt history
+- Leaderboard with deterministic tie-breaking
+- Atomic JSON writes to reduce partial-file corruption
+- Backward-compatible `main.py` entry point
+- Pytest test suite
+- Ruff linting and GitHub Actions CI
 
-This project is designed as an advanced CLI assessment platform and serves as a foundation for future expansion into full-scale recruiter-facing evaluation systems.
+## Architecture
 
----
-
-## Core Features
-
-### Assessment Engine
-- Dynamic question delivery
-- Modular JSON-driven question bank
-- Difficulty-based filtering
-- Replay assessment system
-
-### Candidate Evaluation
-- Real-time scoring
-- Accuracy percentage computation
-- Execution time tracking
-- Elite performance classification
-- Candidate score history analytics
-- Historical performance tracking
-- Average and best score insights
-
-### Data Persistence
-- JSON result storage
-- Historical attempt tracking
-- Persistent leaderboard system
-
-### Reliability
-- Input validation
-- Safe file handling
-- Structured control flow
-- Portable file-path resolution
-
----
-
-## Difficulty Levels
-
-| Level | Focus |
-|------|------|
-| Beginner | Core Python fundamentals |
-| Intermediate | Applied programming concepts |
-| Advanced | Algorithmic reasoning |
-| Elite | High-performance technical problem solving |
-
----
-
-## Project Architecture
-
-```plaintext
-assessment-engine/
-│
-├── main.py
-├── questions.json
-├── results.json
-└── README.md
+```text
+mercor-elite-assessment-engine/
+├── main.py                     # compatibility entry point
+├── questions.json              # question bank
+├── results.json                # local runtime data
+├── pyproject.toml
+├── mercor_engine/
+│   ├── __init__.py
+│   ├── __main__.py
+│   ├── models.py               # domain models
+│   ├── engine.py               # adaptive assessment logic
+│   ├── analytics.py            # history and leaderboard logic
+│   ├── storage.py              # validated atomic JSON persistence
+│   └── cli.py                  # terminal experience
+├── tests/
+│   └── test_engine.py
+└── .github/workflows/ci.yml
 ```
 
-### System Layers
+## Adaptive rules
 
-**1. Assessment Delivery Layer**
-- Question loading
-- Difficulty filtering
-- Candidate interaction
+The default configuration starts at a selected level.
 
-**2. Evaluation Layer**
-- Scoring engine
-- Performance analytics
-- Classification logic
+- **2 consecutive correct answers**: promote one difficulty level
+- **2 consecutive incorrect answers**: demote one difficulty level
+- Difficulty is bounded between **Beginner** and **Elite**
+- Questions are not repeated within an attempt
+- If the exact difficulty pool is exhausted, the engine falls back to any unused question so an assessment can continue
 
-**3. Persistence Layer**
-- Result serialization
-- Historical storage
-- Leaderboard generation
+## Difficulty levels
 
-**4. Control Layer**
-- Replay lifecycle management
-- Session orchestration
-
----
-
-## Tech Stack
-
-- Python 3
-- JSON
-- File Persistence Architecture
-- CLI Interface Design
-
----
+| Level | Typical focus |
+|---|---|
+| Beginner | Core Python fundamentals |
+| Intermediate | Applied Python and data structures |
+| Advanced | Algorithms and design concepts |
+| Elite | Python internals and software engineering trade-offs |
 
 ## Installation
 
-Clone the repository:
-
 ```bash
-git clone <repository-url>
-cd assessment-engine
+git clone https://github.com/TriumphantDev/mercor-elite-assessment-engine.git
+cd mercor-elite-assessment-engine
+python -m pip install -e ".[dev]"
 ```
 
-Run the engine:
+Run either command:
 
 ```bash
-python3 main.py
+python main.py
+# or
+python -m mercor_engine
 ```
 
----
+Run quality checks:
 
-## Performance Classification
+```bash
+ruff check .
+pytest -q
+```
 
-| Score Range | Classification |
-|------------|----------------|
+## Example result data
+
+Each V2 attempt stores score, duration, rating, starting and ending difficulty, the difficulty path, category accuracy, and per-question outcomes. This makes the data useful for future dashboards or SQLite/PostgreSQL migration.
+
+## Performance classification
+
+| Score | Classification |
+|---|---|
 | 95–100% | MERCOR ELITE |
 | 80–94% | HIGH PERFORMER |
 | 60–79% | STRONG |
 | 40–59% | DEVELOPING |
 | Below 40% | NEEDS IMPROVEMENT |
 
----
+## Next evolution
 
-## Engineering Objectives
+Potential V3 directions:
 
-This project demonstrates:
-
-- Modular software architecture
-- Clean control-flow design
-- Adaptive system engineering
-- Input resilience
-- Persistent state management
-- Recruiter-focused technical simulation
-
----
-
-## Roadmap
-
-### Version 2
-- Randomized question sequencing
-- Per-question countdown timer
-- Negative marking
-- Category selection
-
-### Version 3
-- SQLite integration
+- SQLite or PostgreSQL persistence
+- Timed questions
+- Negative marking modes
 - Candidate authentication
-- Web dashboard
-- Recruiter analytics portal
-- Flask deployment
+- FastAPI backend
+- Web dashboard and recruiter analytics
+- Larger domain-specific question banks
+- Item difficulty calibration and richer adaptive algorithms
 
----
+## Development principles
 
-## Purpose
-
-The objective of this project is to engineer an elite-class technical assessment simulator that reflects the performance standards expected in modern high-caliber technical evaluation environments, including modern AI-driven technical evaluation environments.
+V2 keeps the core assessment logic independent from the CLI and storage layers. That separation makes the engine testable, reusable from a future API, and easier to evolve without rewriting the business logic.
