@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from collections import defaultdict
 from typing import Any
 
 
@@ -29,6 +28,10 @@ def weak_categories(category_accuracy: dict[str, float], threshold: float = 70) 
 def leaderboard(results: list[dict[str, Any]], limit: int = 5) -> list[dict[str, Any]]:
     ranked = sorted(
         results,
-        key=lambda item: (-float(item.get("score", 0)), float(item.get("duration_seconds", item.get("time", 0))), item.get("timestamp", "")),
+        key=lambda item: (
+            -float(item.get("score", 0)),
+            float(item.get("duration_seconds", item.get("time", 0))),
+            item.get("timestamp", ""),
+        ),
     )
     return ranked[:limit]
