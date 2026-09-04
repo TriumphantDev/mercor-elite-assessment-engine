@@ -12,7 +12,7 @@ class Difficulty(IntEnum):
     ELITE = 4
 
     @classmethod
-    def from_value(cls, value: str | int | "Difficulty") -> "Difficulty":
+    def from_value(cls, value: str | int | Difficulty) -> Difficulty:
         if isinstance(value, cls):
             return value
         if isinstance(value, int):
@@ -36,7 +36,7 @@ class Question:
     explanation: str = ""
 
     @classmethod
-    def from_dict(cls, payload: dict[str, Any]) -> "Question":
+    def from_dict(cls, payload: dict[str, Any]) -> Question:
         required = {"id", "question", "options", "answer", "difficulty"}
         missing = required - payload.keys()
         if missing:
