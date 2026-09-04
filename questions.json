@@ -1,49 +1,18 @@
 [
-  {
-    "id": 1,
-    "question": "What does len([1,2,3]) return?",
-    "options": ["2", "3", "4"],
-    "answer": "3",
-    "difficulty": "Beginner"
-  },
-  {
-    "id": 2,
-    "question": "Which keyword defines a function?",
-    "options": ["func", "def", "function"],
-    "answer": "def",
-    "difficulty": "Beginner"
-  },
-  {
-    "id": 3,
-    "question": "What is list comprehension used for?",
-    "options": [
-      "Create lists efficiently",
-      "Delete lists",
-      "Convert strings"
-    ],
-    "answer": "Create lists efficiently",
-    "difficulty": "Intermediate"
-  },
-  {
-    "id": 4,
-    "question": "What does map() return?",
-    "options": [
-      "Iterator",
-      "List",
-      "Dictionary"
-    ],
-    "answer": "Iterator",
-    "difficulty": "Advanced"
-  },
-  {
-    "id": 5,
-    "question": "What is time complexity of dictionary lookup?",
-    "options": [
-      "O(1)",
-      "O(n)",
-      "O(log n)"
-    ],
-    "answer": "O(1)",
-    "difficulty": "Elite"
-  }
+  {"id": 1, "question": "What does len([1, 2, 3]) return?", "options": ["2", "3", "4"], "answer": "3", "difficulty": "Beginner", "category": "Python Fundamentals", "explanation": "len returns the number of elements."},
+  {"id": 2, "question": "Which keyword defines a function in Python?", "options": ["func", "def", "function"], "answer": "def", "difficulty": "Beginner", "category": "Python Fundamentals", "explanation": "Python uses def to declare functions."},
+  {"id": 3, "question": "What is the result of 7 // 2?", "options": ["3", "3.5", "4"], "answer": "3", "difficulty": "Beginner", "category": "Python Fundamentals", "explanation": "// performs floor division."},
+  {"id": 4, "question": "Which collection preserves insertion order and allows duplicates?", "options": ["set", "list", "dict keys only"], "answer": "list", "difficulty": "Beginner", "category": "Data Structures", "explanation": "Lists preserve order and may contain duplicates."},
+  {"id": 5, "question": "What is list comprehension primarily used for?", "options": ["Creating collections concisely", "Deleting lists", "Converting every value to string"], "answer": "Creating collections concisely", "difficulty": "Intermediate", "category": "Python Fundamentals", "explanation": "Comprehensions create collections from iterable expressions."},
+  {"id": 6, "question": "What does enumerate(iterable) provide?", "options": ["Only values", "Index-value pairs", "Only indexes"], "answer": "Index-value pairs", "difficulty": "Intermediate", "category": "Python Fundamentals", "explanation": "enumerate yields an index alongside each value."},
+  {"id": 7, "question": "Average-case dictionary key lookup is closest to which complexity?", "options": ["O(1)", "O(n)", "O(n log n)"], "answer": "O(1)", "difficulty": "Intermediate", "category": "Data Structures", "explanation": "Hash-table lookup is average O(1)."},
+  {"id": 8, "question": "Which statement about generators is true?", "options": ["They always store all values", "They yield values lazily", "They cannot be iterated"], "answer": "They yield values lazily", "difficulty": "Intermediate", "category": "Python Fundamentals", "explanation": "Generators compute values on demand."},
+  {"id": 9, "question": "What does map() return in Python 3?", "options": ["An iterator", "A list", "A dictionary"], "answer": "An iterator", "difficulty": "Advanced", "category": "Python Fundamentals", "explanation": "map returns a lazy iterator in Python 3."},
+  {"id": 10, "question": "What is the time complexity of binary search on a sorted array?", "options": ["O(1)", "O(log n)", "O(n)"], "answer": "O(log n)", "difficulty": "Advanced", "category": "Algorithms", "explanation": "Each comparison eliminates roughly half the search space."},
+  {"id": 11, "question": "Which principle hides implementation details behind a stable interface?", "options": ["Encapsulation", "Inheritance", "Mutation"], "answer": "Encapsulation", "difficulty": "Advanced", "category": "Object-Oriented Programming", "explanation": "Encapsulation groups behavior and data while controlling access."},
+  {"id": 12, "question": "Which sorting algorithm has guaranteed O(n log n) worst-case time?", "options": ["Merge sort", "Insertion sort", "Selection sort"], "answer": "Merge sort", "difficulty": "Advanced", "category": "Algorithms", "explanation": "Merge sort divides and merges with O(n log n) worst-case complexity."},
+  {"id": 13, "question": "What property makes a hashable Python object suitable as a dictionary key?", "options": ["Its hash value remains stable during its lifetime", "It is always mutable", "It must be numeric"], "answer": "Its hash value remains stable during its lifetime", "difficulty": "Elite", "category": "Python Internals", "explanation": "Dictionary keys require a stable hash and equality behavior."},
+  {"id": 14, "question": "What is the key risk of a mutable default argument?", "options": ["The same object can be shared across calls", "It makes functions asynchronous", "It disables type checking"], "answer": "The same object can be shared across calls", "difficulty": "Elite", "category": "Python Internals", "explanation": "Default expressions are evaluated once when the function is defined."},
+  {"id": 15, "question": "Which design goal best supports deterministic testing of an adaptive engine?", "options": ["Injecting randomness and external dependencies", "Using global state everywhere", "Generating new rules during every test"], "answer": "Injecting randomness and external dependencies", "difficulty": "Elite", "category": "Software Engineering", "explanation": "Dependency injection allows tests to control nondeterministic behavior."},
+  {"id": 16, "question": "Why is atomic file replacement useful when saving JSON results?", "options": ["It reduces the chance of leaving a partially written result file", "It compresses JSON automatically", "It encrypts every score"], "answer": "It reduces the chance of leaving a partially written result file", "difficulty": "Elite", "category": "Software Engineering", "explanation": "Writing to a temporary file then replacing the target is safer than overwriting directly."}
 ]
